@@ -18,8 +18,8 @@ async function getPerson(req, res, id) {
 
         if(!person) {
             
-            res.writeHead(400, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({message: 'Person Not Found'}));    
+            res.writeHead(404, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: `Person with ${id} not found`}));    
         
         } else {
 
@@ -38,6 +38,13 @@ async function createPerson(req, res) {
         const body = await getBodyData(req);
         const {name, age, hobbies} = body;
 
+        if(!name || !age || !hobbies) {
+
+            res.writeHead(400, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: `Name, age, hobbies are required!`}));    
+
+        }
+
         const person = {name, age, hobbies};
         const newPerson = await Person.create(person);
 
@@ -55,8 +62,10 @@ async function updatePerson(req, res, id) {
         const person = await Person.findById(id);
 
         if (!person){
-            res.writeHead(400, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({message: 'Person Not Found'}));    
+
+            res.writeHead(404, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: 'Person with entered id is not found'}));  
+
         } else {
 
             const body = await getBodyData(req);
@@ -85,13 +94,13 @@ async function deletePerson(req, res, id) {
 
         if(!person) {
             
-            res.writeHead(400, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({message: 'Person Not Found'}));    
+            res.writeHead(404, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: 'Person with entered id is not found'}));    
         
         } else {
 
             await Person.remove(id);
-            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.writeHead(204, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({message: `Person ${id} removed`}));
     
         }
