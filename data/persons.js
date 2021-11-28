@@ -1,6 +1,5 @@
-const persons = [
-];
+let persons = [];
 
 module.exports = {
-    persons,
+    persons
 }
