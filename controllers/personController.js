@@ -29,16 +29,33 @@ async function getPerson(req, res, id) {
 
 async function createPerson(req, res) {
     try {
-        const person = {
-            name: 'test',
-            age: 23,
-            hobbies: ['series', 'jogging']
-        };
 
-        const newPerson = Person.create(person);
+        let body = '';
+
+        req.on('data', (chunk) => {
+
+            body += chunk.toString()
         
-        res.writeHead(201, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify(newPerson));
+        })
+
+        req.on('end', async (chunk) => {
+
+            const {name, age, hobbies} = JSON.parse(body);
+
+            const person = {
+                name,
+                age,
+                hobbies
+            };
+
+            const newPerson = await Person.create(person);
+
+            res.writeHead(201, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(newPerson));
+        
+        })
+
+
 
     } catch (error) {
         console.log(error);

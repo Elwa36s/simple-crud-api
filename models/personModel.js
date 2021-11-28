@@ -16,11 +16,9 @@ function findById(id) {
 
 function create(person) {
     return new Promise((resolve, reject) => {
-        const newPerson = {
-            id: uuidv4(),
-            ...person
-        }
+        const newPerson = { id: uuidv4(), ...person };
         persons.push(newPerson);
+        resolve(newPerson);
     })
 }
 
