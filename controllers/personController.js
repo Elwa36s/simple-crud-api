@@ -8,7 +8,8 @@ async function getPersons(req, res) {
         res.end(JSON.stringify(persons));
 
     } catch (error) {
-        console.log(error);
+        res.writeHead(500, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({message: 'Something goes wrong...'}))
     }
 }
 
@@ -29,7 +30,8 @@ async function getPerson(req, res, id) {
         }
 
     } catch (error) {
-        console.log(error);
+        res.writeHead(500, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({message: 'Something goes wrong...'}))
     }
 }
 
@@ -54,7 +56,8 @@ async function createPerson(req, res) {
         }
 
     } catch (error) {
-        console.log(error);
+        res.writeHead(500, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({message: 'Something goes wrong...'}))
     }
 }
 
@@ -86,7 +89,8 @@ async function updatePerson(req, res, id) {
         }
 
     } catch (error) {
-        console.log(error);
+        res.writeHead(500, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({message: 'Something goes wrong...'}))
     }
 }
 
@@ -108,7 +112,8 @@ async function deletePerson(req, res, id) {
         }
 
     } catch (error) {
-        console.log(error);
+        res.writeHead(500, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({message: 'Something goes wrong...'}))
     }
 }
 

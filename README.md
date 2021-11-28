@@ -2,7 +2,7 @@
 Simple CRUD API. RSSchool's task
 
 ##Start
-To start server use: <npm run dev>;
+To start server use: <npm run start:dev>;
 Server starts on PORT stored in <.env> file.
 ***
 ##Working with CRUD API
