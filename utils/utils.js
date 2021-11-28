@@ -20,9 +20,8 @@ function getBodyData(req){
 
 function validateId(id){
 
-    requiredID = /([0-9a-zA-Z])+/;
-    return (requiredID.test(id) && id.length === 36) ? true : false
-
+    const idTemplate = /([a-zA-Z0-9]){8}-([a-zA-Z0-9]){4}-([a-zA-Z0-9]){4}-([a-zA-Z0-9]){4}-([a-zA-Z0-9]){12}/;
+    return idTemplate.test(id)
 }
 
 

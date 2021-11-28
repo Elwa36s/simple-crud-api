@@ -43,13 +43,15 @@ async function createPerson(req, res) {
             res.writeHead(400, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({message: `Name, age, hobbies are required!`}));    
 
+        } else {
+
+            const person = {name, age, hobbies};
+            const newPerson = await Person.create(person);
+    
+            res.writeHead(201, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(newPerson));    
+
         }
-
-        const person = {name, age, hobbies};
-        const newPerson = await Person.create(person);
-
-        res.writeHead(201, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify(newPerson));
 
     } catch (error) {
         console.log(error);
@@ -100,9 +102,9 @@ async function deletePerson(req, res, id) {
         } else {
 
             await Person.remove(id);
+
             res.writeHead(204, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({message: `Person ${id} removed`}));
-    
+            res.end();
         }
 
     } catch (error) {
