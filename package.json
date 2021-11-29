@@ -1,0 +1,26 @@
+{
+  "name": "simple-crud-api",
+  "version": "1.0.0",
+  "description": "Simple CRUD API. RSSchool's task",
+  "private": true,
+  "scripts": {
+    "start:dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elwa36s/simple-crud-api.git"
+  },
+  "keywords": [],
+  "author": "Dmitry Dolghopol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elwa36s/simple-crud-api/issues"
+  },
+  "homepage": "https://github.com/Elwa36s/simple-crud-api#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "uuid": "^8.3.2"
+  }
+}
